@@ -1,0 +1,319 @@
+{
+  "rank": "06",
+  "source": "https://rank06.42exam.net/",
+  "retrieved_on": "2026-11-06",
+  "subjects": [
+    {
+      "id": 1,
+      "level": 1,
+      "difficulty": "medium",
+      "name": "prefix_dictionary",
+      "assignment": "prefix_dictionary",
+      "file": "prefix_dictionary.py",
+      "description": {
+        "en": "Implement a class named `PrefixDictionary` that represents a prefix tree (Trie).\n\nThe class must provide the following methods:\n\n1. `__init__(self)`:\nInitializes an empty prefix dictionary.\n\n2. `insert(self, word: str) -> None`:\nInserts the string `word` into the prefix dictionary.\n\n3. `search(self, word: str) -> bool`:\nReturns `True` if the exact string `word` has been inserted into the prefix dictionary, and `False` otherwise.\n\n4. `starts_with(self, prefix: str) -> bool`:\nReturns `True` if there is any previously inserted string that begins with the given `prefix`, and `False` otherwise.\n\nAll inputs consist only of lowercase English letters (`'a'` - `'z'`)."
+      },
+      "signature": "class PrefixDictionary:\n    def __init__(self):\n    def insert(self, word: str) -> None:\n    def search(self, word: str) -> bool:\n    def starts_with(self, prefix: str) -> bool:",
+      "examples": [
+        {
+          "input": "d = PrefixDictionary(); d.insert(\"apple\"); d.search(\"apple\")",
+          "output": "True"
+        },
+        {
+          "input": "d = PrefixDictionary(); d.insert(\"apple\"); d.search(\"app\")",
+          "output": "False"
+        },
+        {
+          "input": "d = PrefixDictionary(); d.insert(\"apple\"); d.starts_with(\"app\")",
+          "output": "True"
+        },
+        {
+          "input": "d = PrefixDictionary(); d.insert(\"apple\"); d.insert(\"app\"); d.search(\"app\")",
+          "output": "True"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "level": 1,
+      "difficulty": "medium",
+      "name": "pack_strings",
+      "assignment": "pack_strings",
+      "file": "pack_strings.py",
+      "description": {
+        "en": "Write two functions to serialize and deserialize a list of strings:\n\n1. `pack(strs: list[str]) -> str`:\nEncodes a list of strings into a single string.\n\n2. `unpack(s: str) -> list[str]`:\nDecodes the formatted string back into the original list of strings.\n\nFor every valid list of strings, `unpack(pack(strs))` must evaluate to `strs`.\nThe strings may contain any characters (including digits, delimiters like `#` or `:`, spaces, symbols, and newlines) and may be empty.\nAn empty list `[]` and a list containing a single empty string `[\"\"]` must be distinguished and reconstructed correctly.\nYou may not use `json`, `pickle`, or `eval`."
+      },
+      "signature": "def pack(strs: list[str]) -> str:\ndef unpack(s: str) -> list[str]:",
+      "examples": [
+        {
+          "input": "unpack(pack([\"hello\", \"world\"]))",
+          "output": "[\"hello\", \"world\"]"
+        },
+        {
+          "input": "unpack(pack([]))",
+          "output": "[]"
+        },
+        {
+          "input": "unpack(pack([\"\"]))",
+          "output": "[\"\"]"
+        },
+        {
+          "input": "unpack(pack([\"42\", \"exam#net\", \"level:6\"]))",
+          "output": "[\"42\", \"exam#net\", \"level:6\"]"
+        }
+      ],
+      "forbidden": [
+        "json",
+        "pickle",
+        "eval"
+      ]
+    },
+    {
+      "id": 3,
+      "level": 1,
+      "difficulty": "medium",
+      "name": "task_order",
+      "assignment": "task_order",
+      "file": "task_order.py",
+      "description": {
+        "en": "There are `n` tasks labeled from `0` to `n - 1`. You are given an integer `n` and a list of dependency pairs `prereqs`, where each pair `[a, b]` indicates that task `b` must be completed before task `a` can be started.\n\nWrite a function `task_order` that returns a valid execution order in which all tasks can be finished.\n\nRequirements:\n- When multiple tasks have no remaining prerequisites and can be chosen at the same time, always pick the task with the smallest index (lexicographical tie-breaking).\n- If it is impossible to finish all tasks due to a circular dependency (cycle), return an empty list `[]`.\n- You may not use `graphlib.TopologicalSorter`."
+      },
+      "signature": "def task_order(n: int, prereqs: list[list[int]]) -> list[int]:",
+      "examples": [
+        {
+          "input": "task_order(2, [[1, 0]])",
+          "output": "[0, 1]"
+        },
+        {
+          "input": "task_order(4, [[1, 0], [2, 0], [3, 1], [3, 2]])",
+          "output": "[0, 1, 2, 3]"
+        },
+        {
+          "input": "task_order(2, [[0, 1], [1, 0]])",
+          "output": "[]"
+        },
+        {
+          "input": "task_order(3, [])",
+          "output": "[0, 1, 2]"
+        }
+      ],
+      "forbidden": [
+        "graphlib.TopologicalSorter"
+      ]
+    },
+    {
+      "id": 4,
+      "level": 1,
+      "difficulty": "medium",
+      "name": "redundant_link",
+      "assignment": "redundant_link",
+      "file": "redundant_link.py",
+      "description": {
+        "en": "A tree is an undirected connected graph with no cycles.\n\nYou are given an undirected graph that started as a tree with `n` nodes labeled from `1` to `n`, but one extra edge was added. As a result, the graph contains exactly one cycle.\n\nThe graph is represented by an array `edges` of length `n`, where `edges[i] = [u, v]` represents an edge between vertices `u` and `v`.\n\nWrite a function `redundant_link` that returns an edge that can be removed so that the resulting graph is a tree of `n` nodes.\nIf there are multiple answers, return the edge that appears last in the given `edges` list."
+      },
+      "signature": "def redundant_link(edges: list[list[int]]) -> list[int]:",
+      "examples": [
+        {
+          "input": "redundant_link([[1, 2], [1, 3], [2, 3]])",
+          "output": "[2, 3]"
+        },
+        {
+          "input": "redundant_link([[1, 2], [2, 3], [3, 4], [1, 4], [1, 5]])",
+          "output": "[1, 4]"
+        },
+        {
+          "input": "redundant_link([[1, 4], [3, 4], [1, 3], [1, 2], [4, 5]])",
+          "output": "[1, 3]"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "level": 2,
+      "difficulty": "hard",
+      "name": "union_find_system",
+      "assignment": "union_find_system",
+      "file": "union_find_system.py",
+      "description": {
+        "en": "Write a class named `UnionFind` that implements a Disjoint Set Union (DSU) data structure with path compression and union by rank optimizations.\n\nThe class must provide the following methods:\n\n1. `__init__(self, n: int)`:\nInitializes `n` elements (from 0 to n - 1), where each element initially belongs to its own separate set (parent is itself, and rank is 0).\n\n2. `find(self, x: int) -> int`:\nFinds and returns the representative (root) of the set containing element `x`. Implements path compression so that every traversed node points directly to the root.\n\n3. `union(self, x: int, y: int) -> bool`:\nMerges the set containing `x` with the set containing `y` using union by rank (attaching the tree of smaller rank under the root of larger rank; if ranks are equal, increment the rank of the chosen new root).\nReturns `True` if `x` and `y` were in different sets and successfully merged.\nReturns `False` if `x` and `y` were already in the same set.\n\n4. `connected(self, x: int, y: int) -> bool`:\nReturns `True` if `x` and `y` belong to the same set, and `False` otherwise."
+      },
+      "signature": "class UnionFind:\n    def __init__(self, n: int):\n    def find(self, x: int) -> int:\n    def union(self, x: int, y: int) -> bool:\n    def connected(self, x: int, y: int) -> bool:",
+      "examples": [
+        {
+          "input": "uf = UnionFind(5); uf.connected(0, 1)",
+          "output": "False"
+        },
+        {
+          "input": "uf = UnionFind(5); uf.union(0, 1)",
+          "output": "True"
+        },
+        {
+          "input": "uf = UnionFind(5); uf.union(0, 1); uf.connected(0, 1)",
+          "output": "True"
+        },
+        {
+          "input": "uf = UnionFind(5); uf.union(0, 1); uf.union(1, 2); uf.connected(0, 2)",
+          "output": "True"
+        },
+        {
+          "input": "uf = UnionFind(5); uf.union(0, 1); uf.union(0, 1)",
+          "output": "False"
+        },
+        {
+          "input": "uf = UnionFind(3); uf.union(0, 1); uf.union(1, 2); uf.find(0) == uf.find(2)",
+          "output": "True"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "level": 2,
+      "difficulty": "hard",
+      "name": "cache_keeper",
+      "assignment": "cache_keeper",
+      "file": "cache_keeper.py",
+      "description": {
+        "en": "Implement a class named `CacheKeeper` that implements a Least Recently Used (LRU) cache with a fixed capacity.\n\nThe class must provide the following methods:\n\n1. `__init__(self, capacity: int)`:\nInitializes the LRU cache with a positive `capacity`.\n\n2. `get(self, key: int) -> int`:\nReturns the value of the `key` if the key exists in the cache, or `-1` if it does not. A successful `get` marks the accessed key as most recently used.\n\n3. `put(self, key: int, value: int) -> None`:\nInserts or updates the `key` with `value`. The inserted or updated key becomes most recently used. If the number of keys exceeds `capacity`, evicts the least recently used key.\n\nOperations should aim for average $O(1)$ time complexity.\nYou may not use `collections.OrderedDict`."
+      },
+      "signature": "class CacheKeeper:\n    def __init__(self, capacity: int):\n    def get(self, key: int) -> int:\n    def put(self, key: int, value: int) -> None:",
+      "examples": [
+        {
+          "input": "c = CacheKeeper(2); c.put(1, 1); c.put(2, 2); c.get(1)",
+          "output": "1"
+        },
+        {
+          "input": "c = CacheKeeper(2); c.put(1, 1); c.put(2, 2); c.put(3, 3); c.get(2)",
+          "output": "-1"
+        },
+        {
+          "input": "c = CacheKeeper(2); c.put(1, 1); c.put(2, 2); c.get(1); c.put(3, 3); c.get(2)",
+          "output": "-1"
+        },
+        {
+          "input": "c = CacheKeeper(2); c.put(1, 1); c.put(2, 2); c.get(1); c.put(3, 3); c.get(1)",
+          "output": "1"
+        }
+      ],
+      "forbidden": [
+        "collections.OrderedDict"
+      ]
+    },
+    {
+      "id": 7,
+      "level": 2,
+      "difficulty": "hard",
+      "name": "min_heap",
+      "assignment": "min_heap",
+      "file": "min_heap.py",
+      "description": {
+        "en": "Implement a class named `MinHeap` that implements a binary minimum heap stored within a Python list.\n\nThe class must provide the following methods:\n\n1. `__init__(self)`:\nInitializes an empty binary min-heap.\n\n2. `push(self, val: int) -> None`:\nInserts `val` into the heap in $O(\\log n)$ time complexity (sift up).\n\n3. `pop(self) -> int | None`:\nRemoves and returns the minimum value from the heap in $O(\\log n)$ time complexity (sift down). Returns `None` if the heap is empty.\n\n4. `peek(self) -> int | None`:\nReturns the minimum value without removing it in $O(1)$ time complexity. Returns `None` if the heap is empty.\n\n5. `size(self) -> int`:\nReturns the total number of elements currently stored in the heap in $O(1)$ time complexity.\n\nYou may not use the built-in `heapq` module."
+      },
+      "signature": "class MinHeap:\n    def __init__(self):\n    def push(self, val: int) -> None:\n    def pop(self) -> int | None:\n    def peek(self) -> int | None:\n    def size(self) -> int:",
+      "examples": [
+        {
+          "input": "h = MinHeap(); h.push(5); h.push(3); h.push(8); h.peek()",
+          "output": "3"
+        },
+        {
+          "input": "h = MinHeap(); h.push(5); h.push(3); h.push(8); h.pop()",
+          "output": "3"
+        },
+        {
+          "input": "h = MinHeap(); h.push(5); h.push(3); h.push(8); h.pop(); h.peek()",
+          "output": "5"
+        },
+        {
+          "input": "h = MinHeap(); h.push(5); h.push(3); h.push(8); h.size()",
+          "output": "3"
+        },
+        {
+          "input": "h = MinHeap(); h.pop()",
+          "output": "None"
+        }
+      ],
+      "forbidden": [
+        "heapq"
+      ]
+    },
+    {
+      "id": 8,
+      "level": 1,
+      "difficulty": "medium",
+      "name": "trie_autocomplete",
+      "assignment": "trie_autocomplete",
+      "file": "trie_autocomplete.py",
+      "description": {
+        "en": "Write a function that implements an autocomplete system using a Trie (prefix tree) data structure.\nThe function should insert a list of words into the Trie and find all words that start with a given prefix.\n\nThe function should:\n- Build a Trie from the list of words.\n- Return all unique words that start with the given prefix.\n- Return results in alphabetical (lexicographical) order.\n- Handle an empty prefix by returning all unique words sorted.\n- Return an empty list if no matches are found.\n- Be case-sensitive.\n- Ensure duplicate words in the input appear only once in the output."
+      },
+      "signature": "def trie_autocomplete(words: list[str], prefix: str) -> list[str]:",
+      "examples": [
+        {
+          "input": "trie_autocomplete([\"apple\", \"app\", \"apricot\", \"banana\"], \"app\")",
+          "output": "[\"app\", \"apple\"]"
+        },
+        {
+          "input": "trie_autocomplete([\"apple\", \"app\", \"apricot\", \"banana\"], \"ban\")",
+          "output": "[\"banana\"]"
+        },
+        {
+          "input": "trie_autocomplete([\"hello\", \"world\", \"help\", \"heap\"], \"he\")",
+          "output": "[\"heap\", \"hello\", \"help\"]"
+        },
+        {
+          "input": "trie_autocomplete([\"test\"], \"xyz\")",
+          "output": "[]"
+        },
+        {
+          "input": "trie_autocomplete([\"cat\", \"car\", \"card\", \"care\"], \"car\")",
+          "output": "[\"car\", \"card\", \"care\"]"
+        },
+        {
+          "input": "trie_autocomplete([], \"test\")",
+          "output": "[]"
+        },
+        {
+          "input": "trie_autocomplete([\"a\", \"ab\", \"abc\"], \"\")",
+          "output": "[\"a\", \"ab\", \"abc\"]"
+        }
+      ]
+    },
+    {
+      "id": 9,
+      "level": 2,
+      "difficulty": "hard",
+      "name": "bridge_finder",
+      "assignment": "bridge_finder",
+      "file": "bridge_finder.py",
+      "description": {
+        "en": "Write a function that finds all bridges in an undirected graph. A bridge is an edge whose removal increases the number of connected components in the graph.\n\nThe function should:\n- Take an undirected graph as an adjacency list;\n- Return all bridges as a list of tuples (u, v) where u < v;\n- Return results sorted by first element, then by second element;\n- Handle empty graphs (return empty list);\n- Handle graphs with no bridges (return empty list)."
+      },
+      "signature": "def bridge_finder(graph: dict[int, list[int]]) -> list[tuple[int, int]]:",
+      "examples": [
+        {
+          "input": "bridge_finder({0: [1, 2], 1: [0, 2], 2: [0, 1]})",
+          "output": "[]"
+        },
+        {
+          "input": "bridge_finder({0: [1], 1: [0, 2], 2: [1]})",
+          "output": "[(0, 1), (1, 2)]"
+        },
+        {
+          "input": "bridge_finder({0: [1, 2], 1: [0, 2, 3], 2: [0, 1], 3: [1]})",
+          "output": "[(1, 3)]"
+        },
+        {
+          "input": "bridge_finder({})",
+          "output": "[]"
+        },
+        {
+          "input": "bridge_finder({0: [1], 1: [0]})",
+          "output": "[(0, 1)]"
+        },
+        {
+          "input": "bridge_finder({0: [1, 2], 1: [0, 2, 3, 4], 2: [0, 1], 3: [1, 4], 4: [1, 3]})",
+          "output": "[]"
+        }
+      ]
+    }
+  ]
+}
