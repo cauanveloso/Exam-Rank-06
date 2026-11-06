@@ -1,0 +1,6 @@
+__pycache__/
+*.pyc
+/rendu/
+/src/.session.json
+/src/.session.tmp
+/historico/
